@@ -1,0 +1,21 @@
+<nav>
+  <div class="sessions">
+    {% for section in project.Sections %}
+      <a class="{% if section.id == currentSection.id %}active{% endif %}" href="/app/projects/{{ project.id }}/sections/{{ section.id }}">{{ section.name }}</a>
+    {% endfor %}
+  </div>
+
+  <a class="btn" href="#" data-modal-open="#new-section"><img src="/img/plus.svg"></a>
+</nav>
+
+<div class="modal" id="new-section">
+  <form class="modal-content" method="POST" action="/app/projects/{{ project.id }}/sections/create">
+    <input type="text" name="name" placeholder="Título da seção">
+    <div class="content-container">
+      <textarea name="content" class="mde" placeholder="Conteúdo da seção"></textarea>
+    </div>
+
+    <button type="submit">SALVAR SEÇÃO</button>
+    <a href="#" data-modal-close="#new-section">CANCELAR</a>
+  </form>
+</div>
